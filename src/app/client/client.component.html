@@ -1,0 +1,57 @@
+<div class="example-button-row">
+    <button mat-raised-button (click)="goBack()">←</button>
+    <button mat-raised-button routerLink="/models">Models</button>
+    <button mat-raised-button routerLink="/communications">Communicatoins</button>
+</div>
+
+<h2>{{client?.fio | uppercase}}</h2>
+<h4>тел.: {{client?.phone}} --|-- "{{client?.company_name}}"</h4>
+
+<mat-card class="example-card">
+    <mat-card-content>
+      <button mat-raised-button style="margin-left: 0;" (click)="openDialog()">ADD CONTRACT</button>
+
+      <table mat-table [dataSource]="contracts" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let contract">{{contract.id}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef>Code</th>
+          <td mat-cell *matCellDef="let contract">{{contract.code}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let contract">{{contract.address}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="start">
+            <th mat-header-cell *matHeaderCellDef>Starts</th>
+            <td mat-cell *matCellDef="let contract">{{contract.start}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="finish">
+            <th mat-header-cell *matHeaderCellDef>Ends</th>
+            <td mat-cell *matCellDef="let contract">{{contract.finish}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="terminal">
+            <th mat-header-cell *matHeaderCellDef>Terminal</th>
+            <td mat-cell *matCellDef="let contract">{{contract.t_code}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="btns">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let client" style="width: 200px;">
+              <button mat-raised-button (click)="openDialog(client)">✎</button>
+              <button mat-raised-button color="warn" (click)="deleteContract(client.id)">✕</button>
+            </td>
+        </ng-container>
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+</mat-card>

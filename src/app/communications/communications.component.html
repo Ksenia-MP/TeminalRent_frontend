@@ -1,0 +1,36 @@
+<div class="example-button-row">
+    <button mat-raised-button (click)="goBack()">←</button>
+    <button mat-raised-button routerLink="/models">Models</button>
+  </div>
+  
+  <h2>COMMUNICATIONS</h2>
+  
+  <mat-card class="example-card">
+      <mat-card-content>
+        <button mat-raised-button style="margin-left: 0;" (click)="openDialog()">ADD COMMUNICATION</button>
+  
+        <table mat-table [dataSource]="communications" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let comm">{{comm.id}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let comm">{{comm.name}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="btns">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let comm" style="width: 200px;">
+                <button mat-raised-button (click)="openDialog(comm)">✎</button>
+                <button mat-raised-button color="warn" (click)="deleteComm(comm.id)">✕</button>
+              </td>
+          </ng-container>
+            
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+  </mat-card>
+  

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Terminal INFO</h1>
+<div mat-dialog-content >
+    <form [formGroup]="terminalForm" (ngSubmit)="submit()">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Code</mat-label>
+                <input type="number" matInput formControlName="code">
+                <mat-error *ngIf="terminalForm.hasError('required')">
+                    Code is required
+                </mat-error>
+            </mat-form-field><br>
+
+            <!--<mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea type="string" matInput formControlName="address"></textarea>
+            </mat-form-field><br>-->
+
+            <mat-form-field appearance="fill">
+                <mat-label>Model</mat-label>
+                <mat-select type="select" formControlName="m_id">
+                    <mat-option *ngFor="let model of models" [value]="model.id">{{model.name}} </mat-option>
+                </mat-select>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+                <mat-label>State</mat-label>
+                <mat-select type="select" formControlName="state">
+                    <mat-option *ngFor="let state of states" [value]="state">{{state}} </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button type="button" (click)="onNoClick()">Cancel</button>
+            <button mat-button type="submit" cdkFocusInitial>Ok</button>
+        </div>
+    </form>
+</div>

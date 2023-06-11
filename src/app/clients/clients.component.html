@@ -1,0 +1,40 @@
+<h2>CLIENTS</h2>
+
+<mat-card class="example-card">
+    <mat-card-content>
+      <button mat-raised-button style="margin-left: 0;" (click)="openDialog()">ADD CLIENT</button>
+
+      <table mat-table [dataSource]="clients" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let client">{{client.id}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="fio">
+          <th mat-header-cell *matHeaderCellDef>FIO</th>
+          <td mat-cell *matCellDef="let client" routerLink="/clients/{{client.id}}">{{client.fio}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let client"routerLink="/clients/{{client.id}}">{{client.phone}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="company_name">
+            <th mat-header-cell *matHeaderCellDef>Company Name</th>
+            <td mat-cell *matCellDef="let client" routerLink="/clients/{{client.id}}">{{client.company_name}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="btns">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let client" style="width: 200px;" >
+              <button mat-raised-button (click)="openDialog(client)">✎</button>
+              <button mat-raised-button color="warn" (click)="deleteClient(client.id)">✕</button>
+            </td>
+        </ng-container>
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+      </table>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>{{clientForm.controls['fio'].value}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="clientForm" (ngSubmit)="submit()">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>FIO</mat-label>
+            <input type="string" matInput formControlName="fio">
+            <mat-error *ngIf="clientForm.hasError('required')">
+                Client FIO is required
+            </mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input type="string" matInput formControlName="phone" #message maxlength="11" placeholder="80000000000">
+            <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+            <mat-error *ngIf="clientForm.hasError('required')">
+                Phone number is required
+            </mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Company Name</mat-label>
+            <input type="string" matInput formControlName="company_name">
+            <mat-error *ngIf="clientForm.hasError('required')">
+                Company Name is required
+            </mat-error>
+        </mat-form-field>
+    </div>
+    
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancel</button>
+      <button mat-button type="submit" cdkFocusInitial>Ok</button>
+    </div>
+
+  </form>
+</div>

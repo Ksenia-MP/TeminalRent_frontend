@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Terminal INFO</h1>
+<div mat-dialog-content >
+    <form [formGroup]="contractForm" (ngSubmit)="submit()">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Code</mat-label>
+                <input type="number" matInput formControlName="code">
+                <mat-error *ngIf="contractForm.hasError('required')">
+                    Code is required
+                </mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea type="string" matInput formControlName="address"></textarea>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="finish" placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field><br>
+              
+
+            <mat-form-field appearance="fill">
+                <mat-label>Terminal</mat-label>
+                <mat-select type="select" formControlName="t_id">
+                    <mat-option *ngFor="let terminal of terminals" [value]="terminal.id">{{terminal.code}} <br> {{terminal.m_name}}</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button type="button" (click)="onNoClick()">Cancel</button>
+            <button mat-button type="submit" cdkFocusInitial>Ok</button>
+        </div>
+    </form>
+</div>
